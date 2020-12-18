@@ -52,7 +52,7 @@ constexpr std::size_t CACHE_LINE = std::hardware_destructive_interference_size;
 #endif
 
 
-double randomize(unsigned* V, unsigned N, unsigned min, unsigned max) {
+double randomize(unsigned* V, size_t N, unsigned min, unsigned max) {
 
     unsigned T = get_num_threads();
     std::vector<unsigned> multipliers = get_A(T);
