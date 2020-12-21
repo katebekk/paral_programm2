@@ -6,7 +6,7 @@
 #include <chrono>
 #include <thread>
 
-experiment_result* run_experiments(unsigned* V, size_t count, double (*accumulate)(unsigned*, size_t, unsigned, unsigned), unsigned min, unsigned max) {
+experiment_result* run_experiments(unsigned* V, unsigned count, double (*accumulate)(unsigned*, unsigned, unsigned, unsigned), unsigned min, unsigned max) {
     unsigned P = (unsigned)std::thread::hardware_concurrency();
     experiment_result* results = (experiment_result*)malloc(P * sizeof(experiment_result));
     verify(results);
@@ -27,7 +27,7 @@ void print_experiment_results(const experiment_result* results) {
         printf("%10f\t%10lg\t%10lg\n", results[i].result, results[i].time_ms, results[i].speedup);
 }
 
-void run_experiments_for(unsigned* V, size_t count, double (*accumulate)(unsigned*, size_t, unsigned, unsigned), unsigned min, unsigned max) {
+void run_experiments_for(unsigned* V, unsigned count, double (*accumulate)(unsigned*, unsigned, unsigned, unsigned), unsigned min, unsigned max) {
     experiment_result* results = run_experiments(V, count, accumulate, min, max);
     print_experiment_results(results);
     free(results);
